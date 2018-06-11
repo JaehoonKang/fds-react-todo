@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import TodoItem from './Components/TodoItems';
+import TodoList from './Components/TodoList';
 
 let count = 0;
 
@@ -73,38 +75,15 @@ class App extends Component {
           <input type="text" value={newTodoBody} onChange={this.handleInputChange} />
           <button onClick={this.handleButtonClick}>추가</button>
         </label>
-        <ul>
-          {
-            todos.map(todo => (
-              <TodoItem
-                key={todo.id} 
-                {...todo}
-                onComplete={this.handleTodoItemComplete} 
-                onDelete={this.handleTodoItemDelete} 
-              />
-            ))
-          }
-        </ul>
+        <TodoList 
+        todos={todos}
+        handleTodoItemComplete = {this.handleTodoItemComplete}
+        handleTodoItemDelete = {this.handleTodoItemDelete}
+        />
       </div>
     );
   }
 }
 
-class TodoItem extends Component {
-  render() {
-    const {id, body, complete, onComplete, onDelete} = this.props;
-    return (
-      <li className={complete ? 'complete' : ''} key={id}>
-        {body}
-        <button onClick={e => {
-          onComplete(id)
-        }}>완료</button>
-        <button onClick={e => {
-          onDelete(id)
-        }}>삭제</button>
-      </li>
-    )
-  }
-}
 
 export default App;
