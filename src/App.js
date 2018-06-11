@@ -5,7 +5,7 @@ import axios from 'axios';
 let count = 1;
 
 const todoAPI = axios.create({
-  baseURL: 'https://react-json-0611.glitch.me/'
+  baseURL: process.env.REACT_APP_API_URL
 })
 
 class App extends Component {
@@ -59,7 +59,6 @@ class App extends Component {
         loading: true
       });
       await todoAPI.post('/todos', newTodo);
-      
       await this.fetchTodos();
       
 
